@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="MouVue.css">
+</head>
+
+<body>
+    <div id="app">
+        <h2>代辦事項</h2>
+        <hr>
+        <input type="text" size="50" placeholder="請輸入代辦事項" @keyup.enter='addTodo(newTodo)' v-model="newTodo">
+        <!-- @keyup.enter點擊輸入時，會執行addTodo function -->
+
+
+        <ol>
+            
+            <li v-for="todo in todos">
+                {{todo.content}}
+                <a href="#" @click.prevent="removeTodo(todo)">X</a>
+
+                <!-- prevent取消他預設的行為 取消連結 -->
+            </li>
+        </ol>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                todos: [],
+                newTodo: ''
+            },
+            methods: {
+                addTodo: function (todo) {
+                    this.todos.push({ content: todo, completed: false })
+                },
+                //在vue.js裡 this可以撈到data裡的內容
+                //push增加一筆資料，content(內容)為todo(輸入的質)，和 是否完成
+                removeTodo: function (todo) {
+                    this.todos.splice(this.todos.indexOf(todo), 1);
+                }
+                //indexOf知道第幾號，再用splice刪除
+            }
+        })
+    </script>
+</body>
+
+</html>

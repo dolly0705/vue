@@ -1,0 +1,33 @@
+html {
+    body {
+        #app {
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            hr{
+                width: 90vw;
+            }
+            input{
+                margin: 12px;
+                padding: 8px;
+            }
+            ol {
+                width: 50vw;
+                padding-left: 0px;
+                li {
+                    background-color: rgb(247, 239, 229);
+                    position: relative;
+                    padding: 10px 30px;
+                    margin: 2px 0px 0px 20px;
+                    a {
+                        position: absolute;
+                        right: 10px;
+                        color: rgb(255, 0, 0);
+                        text-decoration:0px
+                    }
+                }
+            }
+        }
+    }
+}

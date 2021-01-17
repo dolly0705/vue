@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{message}}
+        <div class="box">
+            {{score*8}}
+        </div>
+        <div v-if="loading"> 訊息正確</div>
+        <!-- v-if vue if判斷 , 連動元素都不會顯示 -->
+        <div v-show="loading"> 訊息錯誤</div>
+        <!-- v-if vue if判斷 , 連動元素會顯示 只是加display:none -->
+
+        <input type="text" v-model="score">
+        <!-- v-model 可動態去改裡面的內容 即時更新資料   -->
+        <div v-if="score>=60"> 及格</div>
+        <div v-else="score<60"> 不及格</div>
+
+        <ul>
+            <li v-for="color in colors">
+                {{color}}
+            </li>
+        </ul>
+        <!-- color自訂名 用color儲存data colors裡每次回圈的變數 -->
+        <ul>
+            <li v-for="home in homes" v-on:click="myFa(home.father)">
+                <!-- v-on:click點擊事件 -->
+                {{home.father}}
+            </li>
+        </ul>
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',  //element 綁在#app上
+            data: {     //用物件的方式做表達
+                message: 'hello shane',//#app裡都可以呼叫
+                score: 50,
+                loading: false,
+                colors: ['black', 'red', 'blue'],
+                homes: [{ father: 'Tom' }, { father: 'bob' }]
+            },
+            methods: {//function寫這
+                myFa: function (father) {
+                    alert('我的爸爸' + father)
+                }
+            }
+        })
+
+
+        var colors = ['yellow','blue','red','pink'];
+        colors.splice(2,1); //刪除一筆，第二筆
+        console.log(colors);
+
+        console.log(colors.indexOf('pink'));//indexOf收尋第幾筆//回傳2
+
+        colors.splice(colors.indexOf('blue'));
+        console.log(colors);
+    </script>
+
+</body>
+
+</html>
+
+
+<!-- vue數據驅動內容 -->
